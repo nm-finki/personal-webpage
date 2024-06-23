@@ -1,0 +1,5 @@
+span.text,
+span.name,
+span.cursor {
+    display: inline-block;
+}

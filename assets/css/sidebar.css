@@ -1,0 +1,177 @@
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: #2B2D30;
+    box-shadow: 2px 0 22px 5px #1d1f20;
+    font-family: Bahnschrift, sans-serif;
+    font-size: 17px;
+    width: 20vw;
+    min-width: 200px;
+    position: relative;
+    z-index: 0;
+    transition: margin-left 0.5s ease;
+    user-select: none;
+
+    &.collapsed {
+        margin-left: calc(50px + (-20vw));
+
+        .header .toggle .arrow {
+            transform: rotate(-0.5turn);
+        }
+
+        #file-container::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .header {
+        font-size: 23px;
+        font-weight: bold;
+        display: flex;
+
+        .text {
+            color: #cbcbcb;
+            padding: 18px 0 18px 18px;
+            flex: 1;
+        }
+
+        .toggle {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: auto;
+            transition: background-color 0.12s ease-out;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.2);
+
+                .arrow {
+                    filter: contrast(150%);
+                }
+            }
+
+            &:active {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            .arrow {
+                width: 0.9em;
+                transition: transform 0.4s ease-out, filter 0.12s ease-out;
+            }
+        }
+    }
+
+    #file-container {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+
+        &::-webkit-scrollbar {
+            width: 0.1em;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(201, 201, 201, 0.25);
+        }
+
+        .directory-container {
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, background-color 0.12s ease-out;
+            height: auto;
+            --max-height: auto;
+            max-height: var(--max-height);
+
+            &.collapsed {
+                max-height: 0;
+            }
+        }
+
+        .directory, .file {
+            display: flex;
+            flex-direction: row;
+            gap: 6px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            --indent: 18px;
+            padding-left: var(--indent);
+            pointer-events: none;
+
+            .icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 0.8em;
+                padding-bottom: 0.1em;
+                transition: filter 0.12s ease-out;
+                filter: contrast(115%);
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .name {
+                color: #cbcbcb;
+            }
+
+            &.active {
+                cursor: pointer;
+                transition: background-color 0.12s ease-out, padding-left 0.12s ease-out;
+                pointer-events: auto;
+
+                .name {
+                    transition: filter 0.12s ease-out;
+                }
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.2);
+
+                    .icon {
+                        filter: contrast(165%);
+                    }
+
+                    .name {
+                        filter: contrast(150%);
+                    }
+                }
+
+                &:not(.directory):active {
+                    background-color: rgba(0, 0, 0, 0.4);
+                }
+            }
+        }
+
+        .directory {
+            .name {
+                font-weight: bold;
+            }
+
+            .icon .arrow {
+                transform: rotate(-0.25turn);
+                transition: transform 0.4s ease-out, filter 0.12s ease-out;
+            }
+
+            &.collapsed {
+                .icon .arrow {
+                    transform: rotate(-0.5turn);
+                }
+            }
+
+            &:hover {
+                .icon .arrow {
+                    filter: contrast(150%);
+                }
+
+                + .directory-container {
+                    background-color: rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
+    }
+}

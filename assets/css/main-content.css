@@ -1,0 +1,117 @@
+#main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: #1E1F22;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+        width: 0.4em;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(201, 201, 201, 0.5);
+
+        &:hover {
+            background-color: rgba(201, 201, 201, 1);
+        }
+    }
+
+    #header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-family: "JetBrainsMono-Bold", sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        padding: 30px 40px 0 40px;
+
+        .text {
+            color: #cbcbcb;
+            white-space: pre;
+        }
+
+        .cursor {
+            font-family: "JetBrainsMono-ExtraLight", sans-serif;
+            font-weight: lighter;
+            color: #cbcbcb;
+            margin-left: -0.31em;
+            user-select: none;
+            animation: blink 1.3s step-end infinite;
+
+            &.active {
+                animation: none;
+            }
+        }
+    }
+
+    #body {
+        font-family: "JetBrainsMono-Light", sans-serif;
+        font-size: 20px;
+        color: #cbcbcb;
+        padding: 0 75px 75px 75px;
+        transition: opacity 0.125s ease-in-out;
+
+        &.fade {
+            opacity: 0;
+        }
+
+        code {
+            font-size: 18px;
+            white-space: pre-wrap;
+        }
+
+        span {
+            &.bold {
+                font-family: "JetBrainsMono-Bold", sans-serif;
+            }
+
+            &.italic {
+                font-style: italic;
+            }
+
+            &.underline {
+                border-bottom: 0.2em dotted;
+            }
+
+            &.tiny {
+                font-size: 0.6em;
+            }
+
+            &.green {
+                color: #61C454;
+            }
+
+            &.orange {
+                color: #ED695E;
+            }
+
+            &.yellow {
+                color: #F4BD4F;
+            }
+
+            &.blue {
+                color: #3434f3;
+            }
+        }
+
+        .fullscreen {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 70vh;
+
+            img {
+                height: 100%;
+            }
+
+            .font {
+                /*TODO: Implement*/
+            }
+        }
+    }
+}
